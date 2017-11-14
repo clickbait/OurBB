@@ -1,0 +1,10 @@
+{
+    "name": "neko/edgy-mybb",
+    "description": "i want a different mybb codebase so i am making one",
+    "type": "project",
+    "require": {
+        "nikic/fast-route": "^1.2",
+        "clancats/hydrahon": "^1.1"
+    },
+    "license": "MIT"
+}
