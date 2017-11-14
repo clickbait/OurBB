@@ -2,6 +2,15 @@
     "name": "neko/edgy-mybb",
     "description": "i want a different mybb codebase so i am making one",
     "type": "project",
+    "authors": [
+        {
+            "name": "Neko",
+            "email": "senpai@protonmail.ch"
+        }
+    ],
+    "config": {
+        "vendor-dir": "includes/vendor"
+    },
     "require": {
         "nikic/fast-route": "^1.2",
         "clancats/hydrahon": "^1.1"
