@@ -1,11 +1,13 @@
 <?php
 
 class Topic {
+	private $tid;
+
 	function __construct( $topic ) {
 		$this->tid = $topic['tid'];
-		$this->fid = $topic['fid'];
-		$this->subject = $topic['subject'];
 		$this->slug = $topic['slug'];
+		$this->subject = $topic['subject'];
+		$this->fid = $topic['fid'];
 	}
 
 	function getReplies() {
