@@ -2,7 +2,9 @@
 
 class Router {
 	function __construct( $routes ) {
-		$this->dispatcher = FastRoute\simpleDispatcher( $routes );
+		$this->dispatcher = FastRoute\cachedDispatcher( $routes, array(
+			'cacheFile' => __DIR__ .'/../../routes.cache'
+		));
 	}
 
 	function dispatch() {
