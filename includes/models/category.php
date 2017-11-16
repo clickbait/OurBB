@@ -17,8 +17,6 @@ class Category {
 			->where( 'fid', $this->fid )
 		->get();
 
-		return array_map( function( $row ) {
-			return new Topic( $row );
-		}, $topics );
+		return Util::return_array_of_objects( $topics, 'Topic' );
 	}
 }

@@ -17,8 +17,6 @@ class Topic {
 			->where( 'tid', $this->tid )
 		->get();
 
-		return array_map( function( $row ) {
-			return new Reply( $row );
-		}, $replies );
+		return Util::return_array_of_objects( $replies, 'Reply' );
 	}
 }
