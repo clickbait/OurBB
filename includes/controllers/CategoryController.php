@@ -4,13 +4,19 @@ class CategoryController extends Controller {
 	public static function view( $args ) {
 		global $db;
 
-		$category = new Category( $db->table( 'forums' )->select()
+		$category = $db->table( 'forums' )->select()
 	    ->where( 'slug', $args['slug'] )
-	    ->get()[0] );
+	    ->get();
 
-		self::response(array(
-			'category' => $category,
-			'topics'	=> $category->getTopics()
-		));
+		if ( $category ) {
+			$category = new Category( $category[0] );
+
+			self::response(array(
+				'category' => $category,
+				'topics'	=> $category->getTopics()
+			));
+		} else {
+			self::not_found();
+		}
 	}
 }

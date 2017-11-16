@@ -4,10 +4,14 @@ class UserController extends Controller {
 	public static function view( $args ) {
 		global $db;
 
-		$user = new User( $db->table( 'users' )->select()
+		$user = $db->table( 'users' )->select()
 	    ->where( 'slug', $args['slug'] )
-	    ->get()[0] );
+	    ->get();
 
-		self::response( $user );
+		if ( $user ) {
+			self::response( new User( $user[0] ) );
+		} else {
+			self::not_found();
+		}
 	}
 }

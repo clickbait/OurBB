@@ -21,7 +21,7 @@ class Router {
 
 		switch ($routeInfo[0]) {
 			case FastRoute\Dispatcher::NOT_FOUND:
-				// handle 404
+				Controller::not_found();
 				break;
 			case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
 				$allowedMethods = $routeInfo[1];

@@ -4,13 +4,19 @@ class TopicController extends Controller {
 	public static function view( $args ) {
 		global $db;
 
-		$topic = new Topic( $db->table( 'threads' )->select()
+		$topic = $db->table( 'threads' )->select()
 	    ->where( 'slug', $args['slug'] )
-	    ->get()[0] );
+	    ->get();
 
-		self::response(array(
-			'topic' => $topic,
-			'replies'	=> $topic->getReplies()
-		));
+		if ( $topic ) {
+			$topic = new Topic( $topic[0] );
+
+			self::response(array(
+				'topic' => $topic,
+				'replies'	=> $topic->getReplies()
+			));
+		} else {
+			self::not_found();
+		}
 	}
 }

@@ -6,4 +6,9 @@ class Controller {
 
 		echo json_encode( $response );
 	}
+
+	static function not_found() {
+		header( 'HTTP/1.0 404 Not Found' );
+		self::response( array( 'errors' => array( 404 => 'Page Not Found' ) ) );
+	}
 }
