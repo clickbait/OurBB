@@ -1,22 +1,18 @@
 <?php
 
-class Topic {
-	private $tid;
+class Topic extends Illuminate\Database\Eloquent\Model {
+	protected $table = 'threads';
+	protected $primaryKey = 'tid';
 
-	function __construct( $topic ) {
-		$this->tid = $topic['tid'];
-		$this->slug = $topic['slug'];
-		$this->subject = $topic['subject'];
-		$this->fid = $topic['fid'];
+	public function replies() {
+		return $this->hasMany( 'Reply', 'tid' );
 	}
 
-	function getReplies() {
-		global $db;
+	public function category() {
+		return $this->belongsTo( 'Category', 'tid' );
+	}
 
-		$replies = $db->table( 'posts' )->select()
-			->where( 'tid', $this->tid )
-		->get();
-
-		return Util::return_array_of_objects( $replies, 'Reply' );
+	public function user() {
+		return $this->belongsTo( 'User', 'uid' );
 	}
 }

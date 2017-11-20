@@ -4,16 +4,12 @@ class CategoryController extends Controller {
 	public static function view( $args ) {
 		global $db;
 
-		$category = $db->table( 'forums' )->select()
-	    ->where( 'slug', $args['slug'] )
-	    ->get();
+		$category = Category::where( 'slug', $args['slug'] )->first();
 
 		if ( $category ) {
-			$category = new Category( $category[0] );
-
 			self::response(array(
 				'category' => $category,
-				'topics'	=> $category->getTopics()
+				'topics'	=> $category->topics()->orderBy('dateline')->get()
 			));
 		} else {
 			self::not_found();

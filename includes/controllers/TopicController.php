@@ -4,16 +4,12 @@ class TopicController extends Controller {
 	public static function view( $args ) {
 		global $db;
 
-		$topic = $db->table( 'threads' )->select()
-	    ->where( 'slug', $args['slug'] )
-	    ->get();
+		$topic = Topic::where( 'slug', $args['slug'] )->first();
 
 		if ( $topic ) {
-			$topic = new Topic( $topic[0] );
-
 			self::response(array(
 				'topic' => $topic,
-				'replies'	=> $topic->getReplies()
+				'replies'	=> $topic->replies()->orderBy('dateline')->get()
 			));
 		} else {
 			self::not_found();

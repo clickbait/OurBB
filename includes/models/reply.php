@@ -1,12 +1,14 @@
 <?php
 
-class Reply {
+class Reply extends Illuminate\Database\Eloquent\Model {
+	protected $table = 'posts';
+	protected $primaryKey = 'pid';
 
-	function __construct( $topic ) {
-		$this->pid = $topic['pid'];
-		$this->tid = $topic['tid'];
-		$this->dateline = $topic['dateline'];
-		$this->message = $topic['message'];
+	public function topic() {
+		return $this->belongsTo( 'Topic', 'tid' );
 	}
 
+	public function user() {
+		return $this->belongsTo( 'User', 'uid' );
+	}
 }

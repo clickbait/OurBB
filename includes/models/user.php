@@ -1,31 +1,13 @@
 <?php
 
-class User {
-	private $uid;
+class User extends Illuminate\Database\Eloquent\Model {
+	protected $primaryKey = 'uid';
 
-	function __construct( $user ) {
-		$this->uid = $user['uid'];
-		$this->slug = $user['slug'];
-		$this->username = $user['username'];
+	public function replies() {
+		return $this->hasMany( 'Reply', 'uid' );
 	}
 
-	function getReplies() {
-		global $db;
-
-		$replies = $db->table( 'posts' )->select()
-			->where( 'uid', $this->uid )
-		->get();
-
-		return Util::return_array_of_objects( $replies, 'Reply' );
-	}
-
-	function getTopics() {
-		global $db;
-
-		$topics = $db->table( 'threads' )->select()
-			->where( 'uid', $this->uid )
-		->get();
-
-		return Util::return_array_of_objects( $topics, 'Topic' );
+	public function topics() {
+		return $this->hasMany( 'Topic', 'uid' );
 	}
 }
