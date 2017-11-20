@@ -12,7 +12,7 @@ class Topic extends Illuminate\Database\Eloquent\Model {
 		return $this->belongsTo( 'Category', 'tid' );
 	}
 
-	public function user() {
+	public function author() {
 		return $this->belongsTo( 'User', 'uid' );
 	}
 }
