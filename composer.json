@@ -1,6 +1,6 @@
 {
-    "name": "neko/edgy-mybb",
-    "description": "i want a different mybb codebase so i am making one",
+    "name": "neko/OurBB",
+    "description": "WIP drop in replacement for MyBB 1.8, using a modern framework.",
     "type": "project",
     "authors": [
         {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a50688147cb10f5aa95fdfedc4da7717",
+    "content-hash": "53f3b40e6bded21677fe2da56f643c98",
     "packages": [
         {
             "name": "clancats/hydrahon",
