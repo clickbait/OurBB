@@ -38,8 +38,11 @@ class UserController extends Controller {
 	  if ( !empty( $errors ) ) {
 	  	self::response( array( 'errors' => $errors ) );
 	  } else {
+	  	$session = new Session;
 	  	$session->uid = $user->uid;
 	  	$session->save();
+
+	  	$_SESSION['sid'] = $session->sid;
 
 	  	self::response( $session->sid );
 	  }
