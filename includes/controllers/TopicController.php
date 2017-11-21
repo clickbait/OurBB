@@ -9,7 +9,7 @@ class TopicController extends Controller {
 		if ( $topic ) {
 			self::response(array(
 				'topic' => $topic,
-				'replies'	=> $topic->replies()->orderBy('dateline')->get()
+				'replies'	=> $topic->replies()->orderBy( 'dateline', 'desc' )->get()
 			));
 		} else {
 			self::not_found();
