@@ -7,5 +7,6 @@ require 'includes/models.php';
 require 'includes/util.php';
 
 require 'includes/db.php';
+require 'includes/session.php';
 
 require 'routes.php';
