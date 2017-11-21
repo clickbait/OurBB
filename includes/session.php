@@ -7,3 +7,5 @@ if ( !isset( $_SESSION['sid'] ) || !( $session = Session::where( 'sid', $_SESSIO
 }
 
 $session->save();
+
+$_SESSION['sid'] = $session->sid;
