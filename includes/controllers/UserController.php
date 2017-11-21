@@ -15,32 +15,33 @@ class UserController extends Controller {
 		}
 	}
 
-	// public static function login() {
-	// 	global $db;
+	public static function login() {
+		global $session;
 
-	// 	$errors = array();
+		$errors = array();
 
-	// 	if ( empty( $_POST['username'] ) ) {
-	// 		$errors[] = "You must enter a username";
-	// 	}
-	// 	if ( empty( $_POST['password'] ) ) {
-	// 		$errors[] = "You must enter a password";
-	// 	}
+		if ( empty( $_POST['username'] ) ) {
+			$errors[] = "You must enter a username";
+		}
+		if ( empty( $_POST['password'] ) ) {
+			$errors[] = "You must enter a password";
+		}
 
-	// 	if ( empty( $errors ) ) {
-	// 		$user = $db->table( 'users' )->select()
-	// 	    ->where( 'username', $_POST['username'] )
-	// 	    ->get();
+		if ( empty( $errors ) ) {
+			$user = User::where( 'username', $_POST['username'] )->first();
 
-	// 	  if ( !$user || !password_verify( $_POST['password'], $user[0]['password'] ) ) {
-	// 	  	$errors[] = 'Invalid username or password';
-	// 	  }
-	// 	}
+		  if ( !$user || !password_verify( $_POST['password'], $user->password ) ) {
+		  	$errors[] = 'Invalid username or password';
+		  }
+		}
 
-	//   if ( !empty( $errors ) ) {
-	//   	self::response( array( 'errors' => $errors ) );
-	//   } else {
-	//   	self::response( new User( $user[0] ) );
-	//   }
-	// }
+	  if ( !empty( $errors ) ) {
+	  	self::response( array( 'errors' => $errors ) );
+	  } else {
+	  	$session->uid = $user->uid;
+	  	$session->save();
+
+	  	self::response( $session->sid );
+	  }
+	}
 }
