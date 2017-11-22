@@ -15,4 +15,8 @@ class TopicController extends Controller {
 			self::not_found();
 		}
 	}
+
+	public static function create( $args ) {
+		self::requires_login();
+	}
 }
