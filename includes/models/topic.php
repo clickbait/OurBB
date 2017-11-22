@@ -8,6 +8,8 @@ class Topic extends Illuminate\Database\Eloquent\Model {
 	protected $primaryKey = 'tid';
 	protected $dateFormat = 'U';
 
+	protected $fillable = array( 'subject' );
+
 	protected $hidden = array( 'icon', 'poll', 'views', 'numratings', 'totalratings', 'notes', 'unapprovedposts', 'deletedposts', 'attachmentcount', 'deletetime' );
 
 	public function replies() {
