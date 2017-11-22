@@ -14,21 +14,21 @@ class UserController extends Controller {
 	}
 
 	public static function login() {
-		global $session;
+		global $session, $params;
 
 		$errors = array();
 
-		if ( empty( $_POST['username'] ) ) {
+		if ( empty( $params->username ) ) {
 			$errors[] = "You must enter a username";
 		}
-		if ( empty( $_POST['password'] ) ) {
+		if ( empty( $params->password ) ) {
 			$errors[] = "You must enter a password";
 		}
 
 		if ( empty( $errors ) ) {
-			$user = User::where( 'username', $_POST['username'] )->first();
+			$user = User::where( 'username', $params->username )->first();
 
-		  if ( !$user || !password_verify( $_POST['password'], $user->password ) ) {
+		  if ( !$user || !password_verify( $params->password, $user->password ) ) {
 		  	$errors[] = 'Invalid username or password';
 		  }
 		}

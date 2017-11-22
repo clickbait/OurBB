@@ -8,8 +8,13 @@ class Router {
 	}
 
 	function dispatch() {
+		global $params;
+
 		$httpMethod = $_SERVER['REQUEST_METHOD'];
 		$uri = $_SERVER['REQUEST_URI'];
+
+		$request_body = file_get_contents( 'php://input' );
+		$params = json_decode( $request_body );
 
 		// Strip query string (?foo=bar) and decode URI
 		if (false !== $pos = strpos($uri, '?')) {
