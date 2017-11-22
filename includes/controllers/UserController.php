@@ -42,7 +42,7 @@ class UserController extends Controller {
 
 	  	$_SESSION['sid'] = $session->sid;
 
-	  	self::response( $session->sid );
+	  	self::response( array( 'token' => $session->sid, 'user' => $user ) );
 	  }
 	}
 }
