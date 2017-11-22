@@ -1,7 +1,5 @@
 <?php
 
-use Jose\Factory\JWEFactory;
-
 class UserController extends Controller {
 	public static function view( $args ) {
 		global $db;
